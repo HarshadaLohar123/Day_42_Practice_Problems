@@ -71,17 +71,65 @@ class Contact {
       return "First Name : "+ this.firstName + ", Last Name : "+ this.lastName + ", Address : "+ this.address + 
       ", city : "+ this.city + ", State : "+ this.state +", Zip : "+ this.zip+ ", Phone No : "+ this.phoneNo + ", Email : "+ this.email;
   }
-}  
+} 
+
 let addressBookArr = new Array();
- try{
- addressBookArr.push(new Contact("Harsha", "Lohar", "Meeranagar", "Mumbai", "Maharastra", "540049", "+919106887766", "Harsha@gmail.com"));
- }catch(e){
-     console.error(e);
- }
-try{
-    addressBookArr.push(new Contact("Sanjay", "Sah", "Kirtaniya", "Bhagalpur", "Bihar", "813209", "+919080706050", "Sanjay@gmail.com"));
-}catch(e){
-    console.error(e);
+function contactExists(fName, lName){
+  return addressBookArr.some(u => u.firstName == fName && u.lastName == lName);
 }
 
+function editContact(fName, lName, property, value){
+  if(contactExists(fName, lName)){
+  switch(property){
+      case "address":
+          addressBookArr.find((contact) => contact.firstName == fName).address = value;
+          break;
+      case "city":
+          addressBookArr.find((contact) => contact.firstName == fName).city = value;
+          break;
+      case "state":
+          addressBookArr.find((contact) => contact.firstName == fName).state = value;
+          break;
+      case "zip":
+          addressBookArr.find((contact) => contact.firstName == fName).zip = value;
+          break;
+      case "phone":
+          addressBookArr.find((contact) => contact.firstName == fName).phoneNo = value;
+          break;
+      case "email":
+          addressBookArr.find((contact) => contact.firstName == fName).email = value;
+          break;
+      default:
+          console.log("Enter valid property");
+  }
+}else{
+    console.log("Contact Does Not Exist");
+}
+}
+
+function deleteContact(fName,lName){
+    let deleteContact = contactExists(fName,lName);
+    if(contactExists(fName,lName)){
+        addressBookArr.pop(contactExists(fName,lName));
+     console.log("Contact "+fName+" "+lName+" removed successfully!!");
+ }  else{
+     console.log("Contact "+fName+" "+lName+" does not exist!");
+ }
+}
+try{
+addressBookArr.push(new Contact("Harsha", "Lohar", "Meeranagar", "Mumbai", "Maharastra", "500849", "+919100887766", "Harsha@gmail.com"));
+}catch(e){
+   console.error(e);
+}
+try{
+  addressBookArr.push(new Contact("Sanjay", "Sah", "County", "Hyderabad", "Telangana", "500049", "9080706050", "mahesh@gmail.com"));
+}catch(e){
+  console.error(e);
+}
+console.log(addressBookArr);
+
+editContact("Sanjay", "Sah", "address", "Bihar");
+console.log(addressBookArr);
+
+deleteContact("Sanjay", "Sah");
 console.log(addressBookArr);
