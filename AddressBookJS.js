@@ -72,9 +72,15 @@ class Contact {
       ", city : "+ this.city + ", State : "+ this.state +", Zip : "+ this.zip+ ", Phone No : "+ this.phoneNo + ", Email : "+ this.email;
   }
 }  
+let addressBookArr = new Array();
+ try{
+ addressBookArr.push(new Contact("Harsha", "Lohar", "Meeranagar", "Mumbai", "Maharastra", "540049", "+919106887766", "Harsha@gmail.com"));
+ }catch(e){
+     console.error(e);
+ }
 try{
-let contact = new Contact("Harsha", "Lohar", "Meeranagar", "Mumbai", "Maharastra", "550049", "+919845976621", "Harsha@gmail.com");
-console.log(contact.toString());
+    addressBookArr.push(new Contact("Sanjay", "Sah", "Kirtaniya", "Bhagalpur", "Bihar", "813209", "+919080706050", "Sanjay@gmail.com"));
 }catch(e){
-  console.error(e);
+    console.error(e);
 }
+console.log(addressBookArr);
